@@ -1,0 +1,11 @@
+.main-form{
+    position: absolute;
+    top: 50px;
+    left: 600px;
+}
+
+button{
+    background-color: #EC0033;
+    font-size: medium;
+    border-radius: 10px;
+}

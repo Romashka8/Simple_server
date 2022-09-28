@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Currency converter</title>
+</head>
+<body>
+    <div class="main-form">
+        <form action="" onsubmit="message(event)">
+            <input type="text" id="Rub" autocomplete="off" placeholder="RUB" />
+            <input type="text" id="Dol" autocomplete="off" placeholder="USA" />
+            <button>Convert</button>
+        </form>
+    </div>
+    <script>
+        var ws = new WebSocket("ws://localhost:8080/actions");
+        const block = document.getElementById('Dol');
+        block.oninput = event => {
+            event.target.value = '';
+        }
+
+        ws.onmessage = function(event) {
+            document.getElementById("Dol").value = event.data;
+        };
+
+        function message(event) {
+            let data = document.getElementById("Rub").value;
+            ws.send(data);
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>
